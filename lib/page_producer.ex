@@ -9,7 +9,7 @@ defmodule PageProducer do
 
   def init(initial_state) do
     Logger.info("PageProducer init")
-    {:producer, initial_state}
+    {:producer, initial_state, dispatcher: GenStage.BroadcastDispatcher}
   end
 
   def handle_demand(demand, state) do

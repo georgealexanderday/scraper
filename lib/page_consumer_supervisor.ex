@@ -19,7 +19,10 @@ defmodule PageConsumerSupervisor do
 
     opts = [
       strategy: :one_for_one,
-      subscribe_to: [{PageProducer, max_demand: 2}]
+      subscribe_to: [
+        {OnlinePageProducerConsumer.via("online_page_producer_consumer_1"), []},
+        {OnlinePageProducerConsumer.via("online_page_producer_consumer_2"), []}
+      ]
     ]
 
     ConsumerSupervisor.init(children, opts)
